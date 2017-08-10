@@ -1,0 +1,9 @@
+@mixin font-face($name) {
+     @font-face{
+        font-family: $name;
+        font-weight: normal;
+        font-style: normal;
+        src: url('/assests/font/#{$name}.eot');
+        src: url('/assests/font/#{$name}.eot?#iefix') format('embedded-opentype'), url('/assests/font/#{$name}.woff') format('woff'), url('/assests/font/#{$name}.ttf') format('truetype'), url('/assests/font/#{$name}.svg##{$name}') format('svg');
+    }
+}

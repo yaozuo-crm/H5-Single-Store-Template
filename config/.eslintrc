@@ -1,0 +1,35 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "plugins": [
+    "json"
+  ],
+  "rules": {
+    "global-require": "off",
+    "import/newline-after-import": "off",
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": [
+        "test/**",
+        "tests/**",
+        "spec/**",
+        "**/__tests__/**",
+        "test.js",
+        "test-*.js",
+        "**/*.test.js",
+        "**/*.spec.js",
+        "**/webpack.config.js",
+        "**/webpack.config.*.js",
+        "**/rollup.config.js",
+        "**/gulpfile.js",
+        "**/gulpfile.*.js",
+        "**/Gruntfile"
+      ],
+      "optionalDependencies": false,
+      "peerDependencies": true
+    }],
+    "max-nested-callbacks": [2, { "max": 5 }],
+    "no-warning-comments": [1, { "terms": ["todo", "fixme"], "location": "start" }]
+  }
+}
