@@ -1,25 +1,12 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import {
   HashRouter as Router,
 } from 'react-router-dom';
 
-import {Provider} from 'react-redux';
-// import {createStore} from 'redux';
-// import todoApp from 'REDUCER';
-
 import routes from 'ROUTE';
-
-// import configureStore from '.redux/store/configureStore';
-
-// Grab the state from a global variable injected into the server-generated HTML
-// const preloadedState = window.__PRELOADED_STATE__;
-
-// Allow the passed state to be garbage-collected
-// delete window.__PRELOADED_STATE__;
-
-// const store = configureStore();
 import store from 'STORE';
 
 if (__DEV__) {
