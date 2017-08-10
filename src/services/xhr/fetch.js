@@ -1,4 +1,3 @@
-// const rootPath = 'http://172.16.2.19:8000';
 const rootPath = 'http://localhost:8002/api'; // 后端 API 根路径
 
 // function buildParams(obj) {
