@@ -1,96 +1,96 @@
 import React, {Component} from 'react';
-// import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import createContainer from 'UTIL/createContainer';
-// import {login} from 'ACTION';
-// import {
-//   Link,
-// } from 'react-router-dom';
-import {Form, Icon, Input, Button, Checkbox} from 'antd';
-// import authService from '../../services/authService';
+import classNames from 'classnames';
+import {List, InputItem, WhiteSpace, WingBlank, Button} from 'antd-mobile';
+// import {createForm} from 'rc-form';
+// import PropTypes from 'prop-types';
 
 import less from './Login.less';
 
-const FormItem = Form.Item;
-
-class NormalLoginForm extends Component {
+class Login extends Component {
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleUsernameBlur = this.handleUsernameBlur.bind(this);
+    this.handlePasswordBlur = this.handlePasswordBlur.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        this.props.login({
-          formData: {
-            pid: values.userName,
-            password: values.password,
-          },
-          history: this.props.history,
-        });
-      }
-    });
+  handleClick() {
+    // this.props.form.getFieldProps('username').value
+    console.log('=== login ===', this);
+  }
+
+  handleUsernameBlur(value) {
+    console.log('username', value, this);
+  }
+
+  handlePasswordBlur(value) {
+    console.log('password', value, this);
   }
 
   render() {
-    console.log('=== Login render ===');
-    const {getFieldDecorator} = this.props.form;
-
+    // const {getFieldProps} = this.props.form;
+    
     return (
       <div className={less.Login}>
-        <Form onSubmit={this.handleSubmit} className={less['login-form']}>
-          <FormItem>
-            {getFieldDecorator('userName', {
-              rules: [{required: true, message: 'Please input your username!'}],
-            })(
-              <Input prefix={<Icon type="user" style={{fontSize: 13}} />} placeholder="Username" />
-          )}
-          </FormItem>
-          <FormItem>
-            {getFieldDecorator('password', {
-              rules: [{required: true, message: 'Please input your Password!'}],
-            })(
-              <Input prefix={<Icon type="lock" style={{fontSize: 13}} />} type="password" placeholder="Password" />
-          )}
-          </FormItem>
-          <FormItem>
-            {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(
-              <Checkbox>Remember me</Checkbox>
-          )}
-            <a className={less['login-form-forgot']} href="www.h5devhoward.com">Forgot password</a>
-            <Button type="primary" htmlType="submit" className={less['login-form-button']}>
-              Log in
-            </Button>
-            Or <a href="www.h5devhoward.com">register now!</a>
-          </FormItem>
-        </Form>
+        <WingBlank>
+          <div className={classNames('preload', less.logo)}>
+            <img src="../../assets/img/logo.png" alt="" />
+          </div>
+          <p className={less.title}>小雅</p>
+        </WingBlank>
+        <WhiteSpace />
+        
+        <List>
+          <InputItem
+            ref={cc => {this.username = cc;}}
+            onBlur={this.handleUsernameBlur}
+            placeholder="username"
+          >
+            <div className={less['username-icon']} />
+          </InputItem>
+          <InputItem
+            ref={cc => {this.password = cc;}}
+            onBlur={this.handlePasswordBlur}
+            placeholder="password"
+          >
+            <div className={less['password-icon']} />
+          </InputItem>
+          {/* <InputItem
+            {...getFieldProps('username', {
+              initialValue: 'Test8【小雅生产】',
+            })}
+            ref={cc => {this.username = cc;}}
+            placeholder="username"
+          >
+            <div className={less['username-icon']} />
+          </InputItem> */}
+          {/* <InputItem
+            {...getFieldProps('password')}
+            placeholder="password"
+          >
+            <div className={less['password-icon']} />
+          </InputItem> */}
+        </List>
+        <WhiteSpace />
+        <Button onClick={this.handleClick} className={less.button} type="primary">登录</Button>
+
       </div>
     );
   }
 }
 
-NormalLoginForm.propTypes = {
-  login: PropTypes.func.isRequired,
-  history: PropTypes.func.isRequired,
-  form: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
-};
+// Login.propTypes = {
+//   form: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.object,
+//   ]),
+// };
 
-NormalLoginForm.defaultProps = {
-  form: undefined,
-};
+// Login.defaultProps = {
+//   form: undefined,
+// };
 
-const connectComponent = createContainer(
-  ({userData}) => ({userData}),
-  require('ACTION/user').default
-);
 
-const Login = connectComponent(Form.create()(NormalLoginForm));
+// const Login = createForm()(Login);
 export default Login;
+

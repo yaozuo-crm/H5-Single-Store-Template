@@ -17,7 +17,7 @@ const PATHS = {
 // svg
 const svgSpriteDirs = [
   require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
-  //path.resolve(__dirname, 'src/assets/img'),  // 业务代码本地私有 svg 存放目录
+  path.resolve(__dirname, 'src/assets/img'),  // 业务代码本地私有 svg 存放目录
 ];
 
 module.exports = {
@@ -99,7 +99,19 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    mainFiles: ['index.web', 'index'], // 这里哦
+    modules: ['app', 'node_modules', path.join(__dirname, '../node_modules')],
+    extensions: [
+      '.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.ts', '.tsx',
+      '.js',
+      '.jsx',
+      '.react.js',
+    ],
+    mainFields: [
+      'browser',
+      'jsnext:main',
+      'main',
+    ],
     alias: {
       '@': PATHS.DEV,
       ASSET: '@/assets',
@@ -113,9 +125,6 @@ module.exports = {
       UTIL: '@/utils',
       VIEW: '@/views',
     },
-    modules: [
-      'node_modules',
-    ],
   },
   plugins: [
     new NyanProgressPlugin(), // 进度条
@@ -155,5 +164,6 @@ module.exports = {
         collapseWhitespace: true,
       },
     }),
+    new webpack.ContextReplacementPlugin(/\.\/locale$/, 'empty-module', false, /js$/),
   ],
 };

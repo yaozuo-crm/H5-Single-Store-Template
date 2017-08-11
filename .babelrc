@@ -14,8 +14,7 @@
         [
             "import",
             {
-                "libraryName": "antd",
-                //  "libraryName": "antd-mobile",
+                "libraryName": "antd-mobile",
                 "style": "css"
             }
         ]

@@ -90,7 +90,7 @@
         "no-const-assign": "error", //不允许改变用const声明的变量
         "no-var": "error", //用let/const代替var
         "no-use-before-define": "error", //禁止定义前使用
-        # "react/forbid-prop-types": [<array>, { "forbid": [<string>] }],
+        // "react/forbid-prop-types": [<enabled>, { "forbid": [<object>] }],
 
 
         // 对象
