@@ -1,33 +1,55 @@
 import React, {Component} from 'react';
 import classNames from 'classnames';
 import {List, InputItem, WhiteSpace, WingBlank, Button} from 'antd-mobile';
+
 // import {createForm} from 'rc-form';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import createContainer from 'UTIL/createContainer';
 
 import less from './Login.less';
 
-class Login extends Component {
+class BasicInputExample extends Component {
   constructor() {
     super();
+    this.state = {
+      username: '',
+      password: '',
+    };
+
     this.handleClick = this.handleClick.bind(this);
     this.handleUsernameBlur = this.handleUsernameBlur.bind(this);
     this.handlePasswordBlur = this.handlePasswordBlur.bind(this);
   }
 
-  handleClick() {
-    // this.props.form.getFieldProps('username').value
-    console.log('=== login ===', this);
+  shouldComponentUpdate() {
+    return false;
   }
 
   handleUsernameBlur(value) {
-    console.log('username', value, this);
+    this.setState({
+      username: value,
+    });
   }
 
   handlePasswordBlur(value) {
-    console.log('password', value, this);
+    this.setState({
+      password: value,
+    });
+  }
+
+  handleClick() {
+    // this.props.form.getFieldProps('username').value
+    this.props.login({
+      formData: {
+        pid: this.state.username,
+        password: this.state.password,
+      },
+      history: this.props.history,
+    });
   }
 
   render() {
+    console.log('=== render ===');
     // const {getFieldProps} = this.props.form;
     
     return (
@@ -51,6 +73,7 @@ class Login extends Component {
           <InputItem
             ref={cc => {this.password = cc;}}
             onBlur={this.handlePasswordBlur}
+            type="password"
             placeholder="password"
           >
             <div className={less['password-icon']} />
@@ -79,18 +102,21 @@ class Login extends Component {
   }
 }
 
-// Login.propTypes = {
-//   form: PropTypes.oneOfType([
-//     PropTypes.string,
-//     PropTypes.object,
-//   ]),
-// };
+const connectComponent = createContainer(
+  ({userData}) => ({userData}),
+  require('ACTION/user').default
+);
+
+BasicInputExample.propTypes = {
+  login: PropTypes.func.isRequired,
+  history: PropTypes.func.isRequired,
+};
 
 // Login.defaultProps = {
 //   form: undefined,
 // };
 
 
-// const Login = createForm()(Login);
+const Login = connectComponent(BasicInputExample);
 export default Login;
 

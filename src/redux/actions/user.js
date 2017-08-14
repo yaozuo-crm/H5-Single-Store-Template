@@ -1,5 +1,5 @@
 import authService from 'SERVICE/authService';
-import {message} from 'antd';
+import {Toast} from 'antd-mobile';
 const LOG_IN = 'LOG_IN';
 const LOG_OUT = 'LOG_OUT';
 
@@ -17,10 +17,10 @@ const login = da => dispatch => {
         dispatch(loginDone(data));
         localStorage.setItem('pid', data.pid);
         localStorage.setItem('token', data.token);
-        message.success('登录成功');
+        Toast.success('登录成功');
         da.history.push('/dashboard');
       } else {
-        message.error(data.info);
+        Toast.fail(data.info);
       }
     });
 };

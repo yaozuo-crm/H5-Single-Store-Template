@@ -9,6 +9,13 @@ export default class App extends Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('xxxxx', this.props);
+    if (this.props.location !== nextProps.location) {
+      console.log('location has changed, do your work');
+    }
+  }
+
   render() {
     return (
       <div
@@ -23,6 +30,10 @@ export default class App extends Component {
 }
 
 App.propTypes = {
+  location: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   data: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
@@ -32,6 +43,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
+  location: undefined,
   data: undefined,
   className: undefined,
   children: 'lol',

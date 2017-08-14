@@ -17,7 +17,7 @@ const PATHS = {
 // svg
 const svgSpriteDirs = [
   require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
-  path.resolve(__dirname, 'src/assets/img'),  // 业务代码本地私有 svg 存放目录
+  // path.resolve(__dirname, 'src/assets/img'),  // 业务代码本地私有 svg 存放目录
 ];
 
 module.exports = {
@@ -89,7 +89,7 @@ module.exports = {
       ],
     },
     {
-      test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+      test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
       use: 'file-loader?limit=1024&name=assets/font/[name].[ext]',
     },
     {
