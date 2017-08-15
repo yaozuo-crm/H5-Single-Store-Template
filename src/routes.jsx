@@ -31,7 +31,7 @@ import less from './styles/style.less';
 // };
 
 
-/* 进入路由的判断*/
+/* 进入路由的判断 */
 // function isLogin(nextState, replaceState) {
 //   const token = sessionStorage.getItem('token');
 //   if (!token) {
