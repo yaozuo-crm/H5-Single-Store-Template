@@ -49,7 +49,7 @@ class BasicInputExample extends Component {
   }
 
   render() {
-    console.log('=== render ===');
+    console.log('=== render ===', this.context.store.getState());
     // const {getFieldProps} = this.props.form;
     
     return (
@@ -106,6 +106,10 @@ const connectComponent = createContainer(
   ({userData}) => ({userData}),
   require('ACTION/user').default
 );
+
+BasicInputExample.contextTypes = {
+  store: React.PropTypes.object,
+};
 
 BasicInputExample.propTypes = {
   login: PropTypes.func.isRequired,
